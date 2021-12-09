@@ -1,0 +1,9 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["goro@fastly.com"]
+description = "Impliments a Slack command on Compute@Edge in Rust"
+language = "rust"
+manifest_version = 2
+name = "ecp-slack-command-rust"
+service_id = ""
