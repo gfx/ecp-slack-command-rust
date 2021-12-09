@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use fastly::http::{header, Method, StatusCode};
-use fastly::{mime, Error, Request, Response,Dictionary};
+use fastly::{mime, Dictionary, Error, Request, Response};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -33,9 +33,12 @@ fn main(mut req: Request) -> Result<Response, Error> {
             //         .with_body_text_plain("Unauthorized\n"));
             // }
 
-            let response_type = "in_channel".to_string();
-            let text = body_form.get("text").unwrap().clone();
-            let message = MessagePayload { response_type, text };
+            let response_type = "in_channel".to_owned();
+            let text = body_form.get("text").unwrap().to_owned();
+            let message = MessagePayload {
+                response_type,
+                text,
+            };
 
             Ok(Response::from_status(StatusCode::OK)
                 .with_content_type(mime::APPLICATION_JSON)
